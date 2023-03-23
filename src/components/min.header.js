@@ -5,13 +5,13 @@ export default {
         banner: "El avión que desapareció",
         des: "La misteriosa desaparición del avión de Malaysia Airlines que despegó el 8 de marzo de 2014 del aeropuerto de Kuala Lumpur con destino a Beijing, China, y nunca más se supo nada de él.A nueve años de la última vez que la torre de control tuvo contacto con la aeronave, son más las dudas que hay sobre el caso que las certezas."
     },
-    title_consume() {
+    render_title_date() {
         let t = document.querySelector("#title__container");   
         let e = document.querySelector("#date__container");         
         t.innerHTML += this.title;
         e.innerHTML += this.details.date; 
     },
-    chapters(obj) {
+    render_banner(obj) {
         let co = []
         let div = document.querySelector("#banner"); 
         let content = ""; 

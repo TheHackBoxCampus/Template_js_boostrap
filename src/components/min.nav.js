@@ -21,7 +21,7 @@ export default {
         url: "assets/img/card_2.jpeg"
       }  
     },
-    consume_() {
+    render_paragraphs() {
         let content = ""; 
         let d = document.querySelector("#nav"); 
         for(let inf in this.chapters_nav){
@@ -29,7 +29,7 @@ export default {
             d.insertAdjacentHTML("beforeend", content); 
         }
     },
-    card() {
+    render_cards() {
         let card1 = document.querySelector("#card_1");
         let card2 = document.querySelector("#card_2");
         let cont = ""; 
