@@ -10,7 +10,7 @@ export default {
         subtitle: "Que se sabe?",
         des:"El avión comercial con 239 pasajeros a bordo debía aterrizar en Beijing a las 6:30 de la mañana. La última vez que se comunicó fue a la 1:21 de la madrugada",
         btn: "Continue",
-        url: "../../assets/img/card_1.jpeg"
+        url: "assets/img/card_1.jpeg"
       } ,
       cards_2:{
         id: 2,
@@ -18,7 +18,7 @@ export default {
         subtitle: "Cadáveres mutilados",
         des:"la información aportada por el radar concordaba con la acción deliberada de una persona que tomó el control del avión, lo que rápidamente se ligó a un posible acto terrorista",
         btn: "Continue",
-        url: "../../assets/img/card_2.jpeg"
+        url: "assets/img/card_2.jpeg"
       }  
     },
     consume_() {
