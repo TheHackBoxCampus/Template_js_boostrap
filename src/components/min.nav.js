@@ -1,7 +1,7 @@
 export default {
     chapters_nav: {
-        about: "About MH370",
-        info: "More info",
+        about: "Acerca de MH370",
+        info: "Mas información",
     },
     features: {
       cards_1:{
