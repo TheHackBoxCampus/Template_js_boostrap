@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "view-errors-lint": "eslint src/components/", 
+    "fix-errors-lint": "eslint src/components/ --fix",
+    "fix-erros-conf": "eslint .eslintrc.js --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

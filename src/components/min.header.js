@@ -1,4 +1,3 @@
-/* eslint-disable quotes */
 export default {
 	title:'MH370',
 	details: {
@@ -8,7 +7,7 @@ export default {
 	},
 	render_title_date() {
 		let t = document.querySelector('#title__container')   
-		let e = document.querySelector("#date__container")         
+		let e = document.querySelector('#date__container')         
 		t.innerHTML += this.title
 		e.innerHTML += this.details.date
 	},
@@ -17,10 +16,10 @@ export default {
 		let div = document.querySelector('#banner') 
 		let content = ''
         
-		for(let el in obj) if(el != "date") co.push(obj[el])
+		for(let el in obj) if(el != 'date') co.push(obj[el])
 		co.forEach(text => {
 			content = `<span>${text}</span><br>`
-			div.insertAdjacentHTML("beforeend", content) 
+			div.insertAdjacentHTML('beforeend', content) 
 		}) 
 	}
 }   
