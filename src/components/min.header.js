@@ -7,19 +7,25 @@ export default {
 	},
 	render_title_date() {
 		let t = document.querySelector('#title__container')   
-		let e = document.querySelector('#date__container')         
-		t.innerHTML += this.title
-		e.innerHTML += this.details.date
+		let e = document.querySelector('#date__container') 
+		const ws = new Worker('src/workers/WorkerTitle.js')
+		ws.postMessage({module: ['render_title', 'render_banner'], resources: [this.title, this.details.date]})		
+		
+		ws.addEventListener('message', res => {
+			let arr = res.data
+			t.insertAdjacentHTML('beforeend', arr[0])
+			e.insertAdjacentHTML('beforeend', arr[1])
+			ws.terminate()
+		})
 	},
 	render_banner(obj) {
-		let co = []
 		let div = document.querySelector('#banner') 
-		let content = ''
-        
-		for(let el in obj) if(el != 'date') co.push(obj[el])
-		co.forEach(text => {
-			content = `<span>${text}</span><br>`
-			div.insertAdjacentHTML('beforeend', content) 
-		}) 
+		const wsBanner = new Worker('src/workers/workerBanner.js')
+		wsBanner.postMessage({module: 'render_banner', info: obj})
+		wsBanner.addEventListener('message', d => {
+			let res = d.data
+			div.insertAdjacentHTML('beforeend', res)
+			wsBanner.terminate()
+		})
 	}
 }   

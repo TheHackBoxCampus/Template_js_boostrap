@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "view-errors-lint": "eslint src/components/", 
+    "view-errors-lint-workers": "eslint src/workers/",
+    "fix-errors-lint-workers": "eslint src/workers/ --fix",
     "fix-errors-lint": "eslint src/components/ --fix",
     "fix-erros-conf": "eslint .eslintrc.js --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
