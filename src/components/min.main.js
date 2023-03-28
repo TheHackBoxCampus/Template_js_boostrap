@@ -1,3 +1,4 @@
+let wsAbout 
 export default {
 	info_about: {
 		title: 'Mas acerca de MH370!',
@@ -20,13 +21,10 @@ export default {
 	],
 
 	render_about() {
-		let content = `
-        <h4 class="fst-italic" >${this.info_about.title}</h4>
-        <p class="mb-0">${this.info_about.text}</p>
-        `
 		let about = document.querySelector('#about')
 		let text_span = document.querySelector('#subtitle_span')
-		return (about.insertAdjacentHTML('beforeend', content), text_span.innerHTML += this.info_about.text_span)
+		wsAbout = new Worker('src/workers/workermain.js')
+		//return (about.insertAdjacentHTML('beforeend', content), text_span.innerHTML += this.info_about.text_span)
 	},
     
 	render_list_pays(format){

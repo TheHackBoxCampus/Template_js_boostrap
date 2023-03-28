@@ -22,28 +22,27 @@ export default {
 		}  
 	},
 	render_paragraphs() {
-		let content = '' 
 		let d = document.querySelector('#nav') 
-		for(let inf in this.chapters_nav){
-			content = `<a class="p-2 link-secondary" href="#">${this.chapters_nav[inf]}</a>`
-			d.insertAdjacentHTML('beforeend', content) 
-		}
+		const wsNav = new Worker('src/workers/workerNav.js')
+		wsNav.postMessage({module: 'render_paragraphs', chapters: this.chapters_nav})
+
+		wsNav.addEventListener('message', e => { 
+			let res = e.data 
+			d.insertAdjacentHTML('beforeend', res) 
+			wsNav.terminate()
+		})
 	},
 	render_cards() {
 		let card1 = document.querySelector('#card_1')
 		let card2 = document.querySelector('#card_2')
-		let cont = '' 
-		for(let card in this.features){
-			cont =  `
-            <div class="col p-4 d-flex flex-column position-static gap-1">
-            <strong class="d-inline-block text-primary">${this.features[card].title_Card}</strong>
-            <h3 class="mb-0">${this.features[card].subtitle}</h3>
-            <p class="card-text mb-auto">${this.features[card].des}</p>
-            <a href="#" class="stretched-link">${this.features[card].btn}</a>
-          </div>
-          <img class="col-4 col-md-5" src=${this.features[card].url}>
-         `
-			this.features[card].id == 1 ? card1.innerHTML += cont : card2.innerHTML += cont
-		}
+		const wsCards = new Worker('src/workers/workerCards.js')
+		wsCards.postMessage({module: 'render_cards', resources: this.features})		
+		
+		wsCards.addEventListener('message', e => {
+			let res = e.data
+			card1.innerHTML += res[0]
+			card2.innerHTML += res[1]					
+		})
+		
 	}
 }
