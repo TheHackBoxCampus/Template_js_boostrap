@@ -9,6 +9,7 @@
     "fix-errors-lint-workers": "eslint src/workers/ --fix",
     "fix-errors-lint": "eslint src/components/ --fix",
     "fix-errors-conf": "eslint .eslintrc.js --fix",
+    "fix-errors-conf-localStorage": "eslint src/storage --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
