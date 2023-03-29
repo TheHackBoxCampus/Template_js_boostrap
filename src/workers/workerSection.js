@@ -10,8 +10,8 @@ let workerSection = {
 			for (let y = 0; y < data[0].crew[x].members.length; y++){
 				co.forEach(pay => pay_str += `
                 <tr>
-                    <td>${pay}</td><td>${data[0].crew[x].members[y++]}</td>
-                    <td>${data[0].crew[x + 1].members[y]}</td>
+                    <td >${pay}</td><td>${data[0].crew[x].members[y++]}</td>
+                    <td >${data[0].crew[x + 1].members[y]}</td>
                 </tr>`)
 			}
 			break
@@ -22,7 +22,7 @@ let workerSection = {
             <span class="fs-2">${obj.title.hipo}</span>
             <p class="fs-5 mt-3">${obj.des}</p>
             <span class="fs-2">${obj.title.national}</span>
-            <table class="table mt-3">
+            <table class="table mt-3 text-light">
                 <thead>
                     <tr>
                         <th>Nacionalidad</th>

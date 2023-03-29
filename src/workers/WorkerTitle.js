@@ -1,7 +1,7 @@
 let workerTitle = {
 	render_title(title, obj) {
-		let content_title = `<p class="fs-3">${title}</p>`
-		let content_date = `<a class="link-secondary" href="#">${obj}</a>`
+		let content_title = `<p class="fs-3 text-light">${title}</p>`
+		let content_date = `<a class="link-secondary light" href="#">${obj}</a>`
 		return [content_title, content_date]
 	},  
 }

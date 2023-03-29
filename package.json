@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "view-errors-lint": "eslint src/components/", 
+    "fix-errors-main": "eslint src/main.js --fix",
     "view-errors-lint-workers": "eslint src/workers/",
     "fix-errors-lint-workers": "eslint src/workers/ --fix",
     "fix-errors-lint": "eslint src/components/ --fix",

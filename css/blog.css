@@ -1,4 +1,8 @@
 /* stylelint-disable selector-list-comma-newline-after */
+body {
+  background: #222222 !important
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -135,4 +139,10 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
   opacity: .8;
   border-radius: 0.3em;
+}
+
+
+.blog-footer{
+  border: none;
+  background-color: rgb(205, 199, 199) !important;
 }

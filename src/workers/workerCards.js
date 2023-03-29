@@ -6,7 +6,7 @@ let workerCard = {
 
 		for(let card in features){
 			cont =  `
-            <div class="col p-4 d-flex flex-column position-static gap-1">
+            <div class="col p-4 d-flex flex-column position-static gap-1 bg-light border border-none">
             <strong class="d-inline-block text-primary">${features[card].title_Card}</strong>
             <h3 class="mb-0">${features[card].subtitle}</h3>
             <p class="card-text mb-auto">${features[card].des}</p>
