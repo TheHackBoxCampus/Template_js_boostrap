@@ -10,53 +10,22 @@ export default {
 			{members:[0,12,0,0,0,0,0,0,0,0,0]}
 		]
 		}], 
+
 	acm(arr){
 		let ac = arr.reduce((a, i) => a + i)
 		arr.push(ac)
 	},
 
 	render_section(pays) {
-		let content = ''
-		let co = [...pays] 
-		let pay_str = ''
+		const wsSection = new Worker('src/workers/workerSection.js')
 		let section = document.querySelector('#article_section')
-
 		for(let w = 0; w < 2; ++w) {
 			this.acm(this.data[0].crew[w].members)
 		}
-
-		co.push('Total: ')
-
-		for(let x = 0; x < 1; x++){
-			for (let y = 0; y < this.data[0].crew[x].members.length; y++){
-				co.forEach(pay => pay_str += `
-                <tr>
-                    <td>${pay}</td><td>${this.data[0].crew[x].members[y++]}</td>
-                    <td>${this.data[0].crew[x + 1].members[y]}</td>
-                </tr>`)
-			}
-			break
-		}
-
-		this.data.forEach(obj => {
-			content += `
-            <span class="fs-2">${obj.title.hipo}</span>
-            <p class="fs-5 mt-3">${obj.des}</p>
-            <span class="fs-2">${obj.title.national}</span>
-            <table class="table mt-3">
-                <thead>
-                    <tr>
-                        <th>Nacionalidad</th>
-                        <th>Pasajeros</th>
-                        <th>Tripulacion</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  ${pay_str}
-                </tbody>
-            </table>
-            `
+		wsSection.postMessage({module: 'render_section', resources: [this.data, pays]})
+		wsSection.addEventListener('message', e => {
+			section.insertAdjacentHTML('beforeend', e.data)
+			wsSection.terminate()
 		})
-		section.insertAdjacentHTML('beforeend', content)
 	}
 }

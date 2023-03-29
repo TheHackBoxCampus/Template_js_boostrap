@@ -9,10 +9,10 @@ export default {
 
 	render_footer() {
 		let footer = document.querySelector('#footer')
-		let content = `
-            <span class="fs-4">${this.data.developer.name} <b class="text-secondary">${this.data.developer.role}<b><span>
-            <p class="fs-3">${this.data.copyright}</p>
-        `
-		footer.insertAdjacentHTML('beforeend', content)
+		let wsFooter = new Worker('src/workers/workerFooter.js')
+		wsFooter.postMessage({resources: this.data})
+		wsFooter.addEventListener('message', e => {
+			footer.insertAdjacentHTML('beforeend', e.data)
+		})
 	}
 }

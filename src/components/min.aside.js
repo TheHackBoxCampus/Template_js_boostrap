@@ -21,21 +21,12 @@ export default {
 	render_aside() {
 		let aside = document.querySelector('#aside')
 		let aside_social = document.querySelector('#aside_developer')
-		let link = this.datas.links.map(link => `<li><a href='#'>${link}<a></li>`)
-		let social = `<li><a href=${this.datas.social[0].github}>Github<a></li>`
-        
-		let content_aside = `
-            <h4 class='fst-italic'>${this.datas.title}</h4>
-            <ol class='list-unstyled mb-0'>${link.join('')}</ol>
-        ` 
-
-		let content_social_aside = `
-            <h4 class='fst-italic'>${this.datas.social[0].subtitle}</h4>
-            <ol class='list-unstyled mb-0'>${social}</ol>
-        `
-
-		aside.insertAdjacentHTML('beforeend', content_aside)
-		aside_social.insertAdjacentHTML('beforeend', content_social_aside)
+		const wsAside = new Worker('src/workers/workerAside.js')
+		wsAside.postMessage({module: 'render_aside', resources: this.datas})
+		wsAside.addEventListener('message', e => {
+			aside.insertAdjacentHTML('beforeend', e.data[0])
+			aside_social.insertAdjacentHTML('beforeend', e.data[1])
+		})
         
 	}
 }

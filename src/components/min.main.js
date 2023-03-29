@@ -19,39 +19,34 @@ export default {
 			des:'La aerolínea confirmó el inicio de las operaciones de búsqueda, y dos barcos de rescate chinos se desplazaron al mar de China Meridional para colaborar. Las autoridades malayas también enviaron un avión, dos helicópteros y cuatro navíos para participar en los trabajos de búsqueda. De manera inmediata otros países se sumaron al esfuerzo de búsqueda',
 			pays: ['🇨🇳 China', '🇲🇾 Malasia', '🇬🇧 Reino Unido', '🇮🇩 Indonesia', '🇦🇺 Austrialia', '🇮🇳 India', '🇩🇪 Alemania', '🇧🇪 Belgica', '🇺🇸 Estados unidos', '🇫🇷 Francia']}
 	],
-
-	render_about() {
-		let about = document.querySelector('#about')
-		let text_span = document.querySelector('#subtitle_span')
-		wsAbout = new Worker('src/workers/workermain.js')
-		//return (about.insertAdjacentHTML('beforeend', content), text_span.innerHTML += this.info_about.text_span)
-	},
-    
+	
 	render_list_pays(format){
 		return this.data_main[3].pays.map(pay => `<${format} class="fs-5">${pay}</${format}>`)
 	},
 
-	render_info_main() {
-		let content = ''
+	render_about() {
 		let pay_format = this.render_list_pays('li')
-         
-		for(let w = 0; w < this.data_main.length; w++){
-			if(w < this.data_main.length - 1){
-				content += `
-                <span class="fs-2">${this.data_main[w].title}</span>
-                <p class="fs-5">${this.data_main[w].des}</p>
-                `
-			} else {
-				content += `
-                <span class="fs-2">${this.data_main[w].title}</span>
-                <p class="fs-5">${this.data_main[w].des}</p>
-                <ul class="mt-3">${pay_format.join('')}</ul>
-                `
-			}
-		}
+		let about = document.querySelector('#about')
+		let text_span = document.querySelector('#subtitle_span')
+		wsAbout = new Worker('src/workers/workermain.js')
+		wsAbout.postMessage({methods: ['render_about', 'render_info'], 
+			resources: [[this.info_about.title, this.info_about.text, this.info_about.text_span], this.data_main, pay_format]})
+		
+		wsAbout.addEventListener('message', e => {
+			let res = e.data
+			about.insertAdjacentHTML('beforeend', res[0][0])
+			text_span.innerHTML += res[0][1]
+			wsAbout.terminate()
+		})
+	},
 
+	render_info_main() {
 		let article = document.querySelector('#article_main') 
-		article.insertAdjacentHTML('beforeend', content)
+		wsAbout.addEventListener('message', e => {
+			let res = e.data
+			article.insertAdjacentHTML('beforeend', res[1])
+			wsAbout.terminate()
+		})
 	},
 }
  

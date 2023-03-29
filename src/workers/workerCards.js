@@ -1,8 +1,8 @@
 let workerCard = {  
-    render_cards(features) {
-        let card_1_content 
-        let card_2_content 
-        let cont = ''
+	render_cards(features) {
+		let card_1_content 
+		let card_2_content 
+		let cont = ''
 
 		for(let card in features){
 			cont =  `
@@ -14,13 +14,13 @@ let workerCard = {
           </div>
           <img class="col-4 col-md-5" src=${features[card].url}>
          `
-         features[card].id == 1 ? card_1_content = cont : card_2_content = cont 
+			features[card].id == 1 ? card_1_content = cont : card_2_content = cont 
 		}
-        return [card_1_content,card_2_content]
-    }
+		return [card_1_content,card_2_content]
+	}
 }
 
 
 self.addEventListener('message',e =>  {
-    postMessage(workerCard[`${e.data.module}`](e.data.resources))
+	postMessage(workerCard[`${e.data.module}`](e.data.resources))
 })
